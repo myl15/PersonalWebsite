@@ -1,180 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myles Barney - PhD in Computer Science</title>
+    <title>Myles Barney — PhD Candidate, NLP & Machine Translation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Three.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- OrbitControls for camera manipulation -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container flex justify-between items-center">
-            <h1 class="name">Myles Barney</h1>
-            <ul class="nav-links flex gap-16">
-                <li><a href="#home" data-section="home">Home</a></li>
-                <li><a href="#projects" data-section="projects">Projects</a></li>
-                <li><a href="#publications" data-section="publications">Publications</a></li>
-                <li><a href="#contact" data-section="contact">Contact</a></li>
+
+    <!-- Star canvas background -->
+    <canvas id="star-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">
+                <span class="logo-initials">MB</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#beyond" class="nav-link">Beyond</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <a href="CV.pdf" class="nav-cv-btn" target="_blank" download>
+                <span>CV</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M2 5l4 4 4-4M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
         </div>
     </nav>
 
-    <!-- 3D Canvas Container -->
-    <div id="canvas-container"></div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-dot"></span>
+                <span>PhD Candidate · BYU Matrix Lab</span>
+            </div>
+            <h1 class="hero-name">
+                <span class="name-first">Myles</span>
+                <span class="name-last">Barney</span>
+            </h1>
+            <p class="hero-tagline">
+                Building machine translation systems that break down language barriers for
+                <em>low-resource and marginalized communities</em>.
+            </p>
+            <div class="hero-fields">
+                <span class="field-tag">Natural Language Processing</span>
+                <span class="field-tag">Machine Translation</span>
+                <span class="field-tag">Multilingual AI</span>
+                <span class="field-tag">Cross-lingual Transfer</span>
+                <span class="field-tag">Machine Learning</span>
+            </div>
+            <div class="hero-actions">
+                <a href="#research" class="btn-primary">View Research</a>
+                <a href="#publications" class="btn-ghost">Publications</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="orbit-system">
+                <div class="orbit-ring ring-1"></div>
+                <div class="orbit-ring ring-2"></div>
+                <div class="orbit-ring ring-3"></div>
+                <div class="orbit-core">
+                    <div class="core-inner"></div>
+                </div>
+                <div class="orbit-dot dot-1" data-label="NLP"></div>
+                <div class="orbit-dot dot-2" data-label="MT"></div>
+                <div class="orbit-dot dot-3" data-label="ML"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-    <!-- Back to Solar System Button -->
-    <button id="back-btn" class="btn btn--primary">Back to Solar System</button>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-inner">
+            <div class="section-label">
+                <span class="label-number">01</span>
+                <span class="label-text">About</span>
+            </div>
+            <div class="about-grid">
 
-    <!-- Content Sections -->
-    <div class="content-container">
-        <!-- Home/About Section -->
-        <section id="home" class="content-section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="card">
-                    <div class="card__body">
-                        <div class="about-content">
-                            <div class="about-text">
-                                <h3>Myles Barney</h3>
-                                <h4>PhD Candidate in Computer Science</h4>
-                                <p class="focus-area">Focus: Natural Language Processing, Machine Learning, Machine Translation, Human Computer Interaction </p>
-                                <p class="university">Brigham Young University</p>
-                                <div class="bio">
-                                    <p>I am a PhD candidate specializing in Natural Language Processing (NLP), Machine Learning (ML), and Machine Translation(MT). My research focuses on creating advanced MT models that can be used to preserve cultural heritage, encourage education for marginalized communities, and inspire conversations of trust and goodwill. I am passionate about creating AI systems that can break down language barriers and make information more accessible globally.</p>
-                                </div>
-                            </div>
+                <!-- Profile photo column -->
+                <div class="about-photo-col">
+                    <div class="profile-photo-wrap">
+                        <img
+                            src="images/profile.jpg"
+                            alt="Myles Barney"
+                            class="profile-photo"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        />
+                    </div>
+                </div>
+
+                <!-- Bio + info -->
+                <div class="about-main">
+                    <h2 class="section-heading">Researcher, Linguist,<br><em>Language Advocate</em></h2>
+                    <p class="about-lead">I'm a Computer Science PhD candidate at Brigham Young University, specializing in NLP, Machine Learning, and Machine Translation. My work lives at the intersection of deep learning and human language — with a particular focus on <strong>empowering people</strong> by improving accessibility through technology.</p>
+                    <p class="about-body">My primary research interests include low-resource neural machine translation and cross-lingual semantic transfer. I'm also a teaching assistant for CS270 and a member of the BYU Matrix Lab.</p>
+                    <p class="about-body">Beyond the lab, I'm driven by the conviction that language technology should preserve cultural heritage, empower marginalized communities, and build trust across linguistic divides. I like to envision a world where <strong>language barriers</strong> are no longer a part of our vocabulary.</p>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <span class="info-label">Institution</span>
+                            <span class="info-value">Brigham Young University</span>
                         </div>
+                        <div class="info-item">
+                            <span class="info-label">Lab</span>
+                            <span class="info-value">BYU Matrix Lab</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Expected graduation</span>
+                            <span class="info-value">2029</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Teaching</span>
+                            <span class="info-value">TA · CS270 · CS601R </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Languages</span>
+                            <span class="info-value">English, Chinese (Mandarin)</span>
+                        </div>
+                    </div>
+                    <!-- <div class="target-langs" style="margin-top:20px;">
+                        <p class="target-langs-label">Research target languages</p>
+                        <div class="lang-pills">
+                            <span class="lang-pill">Yoruba</span>
+                            <span class="lang-pill">Burmese</span>
+                            <span class="lang-pill">+18 others</span>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Research / Projects Section -->
+    <section id="research" class="section section-alt">
+        <div class="section-inner">
+            <div class="section-label">
+                <span class="label-number">02</span>
+                <span class="label-text">Research &amp; Projects</span>
+            </div>
+            <h2 class="section-heading">Current &amp; Past Work</h2>
+
+            <!-- Featured project -->
+            <div class="featured-project">
+                <div class="featured-badge">Active Research</div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="project-year">2025 – Present</span>
+                    </div>
+                    <h3 class="featured-title">LADLE: LoRA Angle-Driven Language Ensemble</h3>
+                    <p class="featured-desc">Investigates the use of angle-guided language selection for maximizing cross-lingual transfer in low-resource settings. LoRA adapters are trained on individual languages, angular distances between adapters are measured and used to guide language selection.</p>
+                    <div class="featured-tags">
+                        <span class="tag">Cross-lingual Transfer</span>
+                        <span class="tag">NLLB-200</span>
+                        <span class="tag">WikiMatrix</span>
+                        <span class="tag">SLURM / HPC</span>
+                        <span class="tag">MetricX-24</span>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="content-section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="card project-card">
-                        <div class="card__body">
-                            <h3 class="project-title">Finetuning SeamlessM4T on Low-Resource African Languages</h3>
-                            <p class="project-year">2025</p>
-                            <p class="project-description">Investigated the expansion of Meta's SeamlessM4T model to support 12 low-resource African languages. This project involved significant time spent debugging and analyzing Meta's code, with attempts to finetune the model to perform S2S translation for the novel languages. Unfortunately, the project was unsuccesful as Meta's current framework is not conducive to adding new language support.</p>
-                            <div class="technologies">
-                                <span class="tech-tag">PyTorch</span>
-                                <span class="tech-tag">Transformer Models</span>
-                                <span class="tech-tag">SeamlessM4T</span>
-                                <span class="tech-tag">African Language Data</span>
-                            </div>
-                        </div>
+            <!-- Project grid -->
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-year">2025</span>
                     </div>
-
-                    
-                    <!-- Project 2 -->
-                    <div class="card project-card">
-                        <div class="card__body">
-                            <h3 class="project-title">Reimagining Question Answering as Machine Translation</h3>
-                            <p class="project-year">2024</p>
-                            <p class="project-description">This project attempted to create a deep learning model that could perform both Question Answering (QA) and Machine Translation (MT) tasks. The unique aspect of the approach was to use tags to indicate the desired task as if it were an MNMT model. The model was trained to perform English-Chinese and Chinese-English MT as well as English-English QA. Evaluation was done on zero-shot Chinese-Chinese QA, English-Chinese QA, and Chinese-English QA.</p>
-                            <div class="technologies">
-                                <span class="tech-tag">Question Answering</span>
-                                <span class="tech-tag">BERT</span>
-                                <span class="tech-tag">MT</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">HuggingFace</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="card project-card">
-                        <div class="card__body">
-                            <h3 class="project-title">Improving Low Resource Language Translation Through Language Clustering</h3>
-                            <p class="project-year">2023</p>
-                            <p class="project-description">Developed a novel approach to tagging in Multilingual Neural Machine Translation (MNMT) models that incorporated language family groups to maximize positive knowledge transfer. This was accomplished by clustering languages based on their positions within the model's encoded latent space. The project explored different clustering methods and encoding methods to improve translation accuracy. Unfortunately, there was no significant improvement in model translation accuracy found in this project.</p>
-                            <div class="technologies">
-                                <span class="tech-tag">Scikit-learn</span>
-                                <span class="tech-tag">Word Embeddings</span>
-                                <span class="tech-tag">MNMT</span>
-                                <span class="tech-tag">Python</span>
-                            </div>
-                        </div>
+                    <h3 class="project-title">Fine-tuning XTTSv2 on Low-Resource African Languages</h3>
+                    <p class="project-desc">Adapted XTTSv2 for 3 low-resource African languages (Xhosa, Igbo, Swahili), focusing on improving speech synthesis quality and reducing training data requirements. Integrated TTS models into full speech-to-speech translation pipelines.</p>
+                    <div class="project-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">XTTSv2</span>
+                        <span class="tag">African Languages</span>
+                        <span class="tag">Speech Translation</span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Publications Section -->
-        <section id="publications" class="content-section">
-            <div class="container">
-                <h2 class="section-title">Publications</h2>
-                <div class="publications-list">
-                    <!-- Publication 1 -->
-                    <div class="card publication-card">
-                        <div class="card__body">
-                            <h3 class="publication-title">The Mysterious Case of Neuron 1512: Injectable Realignment Architectures Reveal Internal Characteristics of Meta's Llama 2 Model</h3>
-                            <p class="publication-authors">Brenden Smith, Dallin Baker, Clayton Chase, Myles Barney, Kaden Parker, Makenna Allred, Peter Hu, Alex Evans, Nancy Fulda</p>
-                            <p class="publication-venue">Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)</p>
-                            <p class="publication-year">2024</p>
-                            <div class="publication-abstract">
-                                <h4>Abstract</h4>
-                                <p>Large Language Models (LLMs) have an unrivaled and invaluable ability to "align" their output to a diverse range of human preferences, by mirroring them in the text they generate. The internal characteristics of such models, however, remain largely opaque. This work presents the Injectable Realignment Model (IRM) as a novel approach to language model interpretability and explainability. Inspired by earlier work on Neural Programming Interfaces, we construct and train a small network -- the IRM -- to induce emotion-based alignments within a 7B parameter LLM architecture. The IRM outputs are injected via layerwise addition at various points during the LLM's forward pass, thus modulating its behavior without changing the weights of the original model. This isolates the alignment behavior from the complex mechanisms of the transformer model. Analysis of the trained IRM's outputs reveals a curious pattern. Across more than 24 training runs and multiple alignment datasets, patterns of IRM activations align themselves in striations associated with a neuron's index within each transformer layer, rather than being associated with the layers themselves. Further, a single neuron index (1512) is strongly correlated with all tested alignments. This result, although initially counterintuitive, is directly attributable to design choices present within almost all commercially available transformer architectures, and highlights a potential weak point in Meta's pretrained Llama 2 models. It also demonstrates the value of the IRM architecture for language model analysis and interpretability.</p>
-                            </div>
-                        </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h3 class="project-title">Reimagining Question Answering as Machine Translation</h3>
+                    <p class="project-desc">Unified QA and MT under a single model using task-control tags, inspired by multilingual NMT tagging schemes. Evaluated zero-shot cross-lingual QA in Chinese–English and Chinese–Chinese settings using BERT and HuggingFace transformers.</p>
+                    <div class="project-tags">
+                        <span class="tag">BERT</span>
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">Zero-shot QA</span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="content-section">
-            <div class="container">
-                <h2 class="section-title">Contact</h2>
-                <div class="card">
-                    <div class="card__body">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <h4>Email</h4>
-                                <p><a href="mailto:jane.doe@university.edu">myles.barney@gmail.com</a></p>
-                            </div>
-                            <div class="contact-item">
-                                <h4>Phone</h4>
-                                <p>+1 (801) 678-4346</p>
-                            </div>
-<!--                             <div class="contact-item">
-                                <h4>Office</h4>
-                                <p>Computer Science Building, Room 301</p>
-                                <p>University of Technology</p>
-                                <p>123 University Avenue, Tech City, TC 12345</p> -->
-<!--                             </div> -->
-                            <div class="contact-item">
-                                <h4>Social Links</h4>
-                                <div class="social-links">
-                                    <a href="https://github.com/myl15" target="_blank" class="social-link">GitHub</a>
-                                    <a href="https://linkedin.com/in/mylesbarney" target="_blank" class="social-link">LinkedIn</a>
-                                    <a href="https://scholar.google.com/citations?user=NJ8v5nwAAAAJ&hl=en" target="_blank" class="social-link">Google Scholar</a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-year">2023</span>
+                    </div>
+                    <h3 class="project-title">Improving Low-Resource MT Through Language Clustering</h3>
+                    <p class="project-desc">Developed a novel tagging approach for MNMT that clusters languages by position in the encoded latent space rather than surface-level family labels, aiming to maximize positive transfer. Explored multiple clustering and encoding strategies.</p>
+                    <div class="project-tags">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">MNMT</span>
+                        <span class="tag">Word Embeddings</span>
                     </div>
                 </div>
+
             </div>
-        </section>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="section-inner">
+            <div class="section-label">
+                <span class="label-number">03</span>
+                <span class="label-text">Publications</span>
+            </div>
+            <h2 class="section-heading">Peer-Reviewed Work</h2>
+
+            <div class="pub-list">
+
+                <div class="pub-card">
+                    <div class="pub-meta-row">
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <h3 class="pub-title">The Mysterious Case of Neuron 1512: Injectable Realignment Architectures Reveal Internal Characteristics of Meta's Llama 2 Model</h3>
+                    <p class="pub-authors">Brenden Smith, Dallin Baker, Clayton Chase, <strong>Myles Barney</strong>, Kaden Parker, Makenna Allred, Peter Hu, Alex Evans, Nancy Fulda</p>
+                    <details class="pub-abstract">
+                        <summary>Abstract</summary>
+                        <p>Large Language Models (LLMs) have an unrivaled and invaluable ability to "align" their output to a diverse range of human preferences. This work presents the Injectable Realignment Model (IRM) as a novel approach to language model interpretability and explainability. Inspired by earlier work on Neural Programming Interfaces, we construct and train a small network — the IRM — to induce emotion-based alignments within a 7B parameter LLM architecture. Analysis of the trained IRM's outputs reveals a curious pattern: across more than 24 training runs, patterns of IRM activations align themselves in striations associated with a neuron's index within each transformer layer, rather than being associated with the layers themselves. A single neuron index (1512) is strongly correlated with all tested alignments — highlighting a potential weak point in Meta's pretrained Llama 2 models.</p>
+                    </details>
+                    <div class="pub-links">
+                        <a href="https://scholar.google.com/citations?user=NJ8v5nwAAAAJ&hl=en" target="_blank" class="pub-link">Google Scholar ↗</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pub-note">
+                Additional work targeting EMNLP 2026, COLING 2026, and WMT 2026.
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Beyond the Lab Section -->
+    <section id="beyond" class="section">
+        <div class="section-inner">
+            <div class="section-label">
+                <span class="label-number">04</span>
+                <span class="label-text">Beyond the Lab</span>
+            </div>
+            <h2 class="section-heading">Life Outside<br><em>the Terminal</em></h2>
+
+            <!-- Hobby cards -->
+            <div class="hobby-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">📷</div>
+                    <h3 class="hobby-title">Film Photography</h3>
+                    <p class="hobby-desc">Shooting medium format on a Hasselblad 500C. There's something irreplaceable about the patience and intentionality that film demands.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🌏</div>
+                    <h3 class="hobby-title">Travel</h3>
+                    <p class="hobby-desc">Exploring the world with a camera and a curious mind. The people and cultures I encounter shape my perspective and fuel my curiosity.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">✝️</div>
+                    <h3 class="hobby-title">Practicing Faith</h3>
+                    <p class="hobby-desc">Active member of the Church of Jesus Christ of Latter-day Saints. My unique perspective on life and work is deeply influenced by my spiritual beliefs, especially the value of interfaith and intercultural dialogue.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="hobby-title">Family</h3>
+                    <p class="hobby-desc">Spending quality time with my loved ones, creating memories, and nurturing relationships that are the foundation of my life.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🍽️</div>
+                    <h3 class="hobby-title">Food</h3>
+                    <p class="hobby-desc">I will eat anything once. Twice, if it's good.</p>
+                </div>
+            </div>
+
+            <!-- Film gallery -->
+            <div class="gallery-header">
+                <h3 class="gallery-title">Through the Viewfinder</h3>
+                <p class="gallery-sub">A selection of medium format and 35mm film shots — Hasselblad 500C and Ricoh TLS 401.</p>
+            </div>
+            <div class="film-gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-01.jpg" alt="Film photo 1"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-02.jpg" alt="Film photo 2"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-03.jpg" alt="Film photo 3"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-04.jpg" alt="Film photo 4"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-05.jpg" alt="Film photo 5"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-06.jpg" alt="Film photo 6"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-07.jpg" alt="Film photo 7"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/film-08.jpg" alt="Film photo 8"
+                         onerror="this.parentElement.classList.add('gallery-placeholder')" />
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-prev" onclick="event.stopPropagation(); shiftLightbox(-1)">&#8249;</button>
+        <img id="lightbox-img" src="" alt="" />
+        <button class="lightbox-next" onclick="event.stopPropagation(); shiftLightbox(1)">&#8250;</button>
     </div>
 
-    <!-- Planet info tooltip -->
-    <div id="planet-tooltip" class="tooltip"></div>
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="section-inner">
+            <div class="section-label">
+                <span class="label-number">05</span>
+                <span class="label-text">Contact</span>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <h2 class="section-heading">Let's Connect</h2>
+                    <p class="contact-lead">I'm always open to research collaborations, internship opportunities in NLP/ML, and conversations about low-resource MT. Don't hesitate to reach out.</p>
+                    <a href="mailto:myles.barney@gmail.com" class="contact-email">
+                        myles.barney@gmail.com
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9.75 4.5 14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                <div class="contact-right">
+                    <div class="links-grid">
+                        <a href="https://github.com/myl15" target="_blank" class="link-card">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                            <span class="link-label">GitHub</span>
+                            <span class="link-handle">@myl15</span>
+                        </a>
+                        <a href="https://linkedin.com/in/mylesbarney" target="_blank" class="link-card">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            <span class="link-label">LinkedIn</span>
+                            <span class="link-handle">mylesbarney</span>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=NJ8v5nwAAAAJ&hl=en" target="_blank" class="link-card">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                            <span class="link-label">Google Scholar</span>
+                            <span class="link-handle">View publications</span>
+                        </a>
+                    </div>
+                    <div class="contact-extra">
+                        <span class="contact-location">📍 Provo, Utah</span>
+                        <span class="contact-status"><span class="status-dot"></span>Open to internships</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Loading indicator -->
-    <div id="loading">
-        <div class="spinner"></div>
-        <p>Loading Solar System...</p>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-name">Myles Barney</span>
+            <span class="footer-copy">PhD Candidate · BYU · 2025</span>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>
